@@ -2,12 +2,10 @@
 
 if (!require(devtools)) install.packages("devtools", repos = "https://cloud.r-project.org")
 if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-project.org")
+if (!require(nser)) remotes::install_github('nandp1/nser')
 
 library(devtools)
 library(tidyverse)
-
-install_github("nandp1/nser")
-
 library(nser)
 
 
