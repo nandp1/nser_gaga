@@ -1,7 +1,7 @@
 
 if (!require(devtools)) install.packages("devtools", repos = "https://cloud.r-project.org")
 if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-project.org")
-if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-project.org")
+if (!require(gitcreds)) install.packages("gitcreds", repos = "https://cloud.r-project.org")
 
 library(gitcreds)
 gitcreds::gitcreds_set('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')
@@ -22,6 +22,7 @@ write.csv(fostock, 'bhav190825.csv')
 
 #survey_data %>%
 #  write_rds("survey_data.rds")
+
 
 
 
