@@ -1,4 +1,4 @@
-name: Fetch Nifty 50 Gainers and Losers Daily
+name: nser github action 
 
 on:
   schedule:
