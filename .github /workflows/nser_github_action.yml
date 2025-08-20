@@ -1,0 +1,40 @@
+name: Fetch Nifty 50 Gainers and Losers Daily
+
+on:
+  schedule:
+    - cron: '30 12 * * *' # Every day at 12:30 UTC = 18:00 IST
+  workflow_dispatch:
+  
+permissions:
+  contents: write
+  
+jobs:
+  fetch-nifty50-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::devtools
+            any::tidyverse
+            
+      - name: Check out repository
+        uses: actions/checkout@v3
+            
+      - name: Fetch Nifty 50 gainers and losers
+        run: Rscript -e 'source("nser_github_action.R")'
+
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add bhav190825.csv
+          git commit -m 'Data updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
