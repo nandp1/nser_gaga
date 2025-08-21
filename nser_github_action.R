@@ -13,20 +13,24 @@ library(devtools)
 library(tidyverse)
 library(nser)
 
-
-fostock = bhav('19082025')
+fostock = bhavtoday()
 fo = read.csv('fo.csv')
 fostock = inner_join(fostock, fo)
 fostock = subset(fostock, SERIES == "EQ")
 
-write.csv(fostock, 'bhav190825.csv')
+fodata = readRDS("fodata.RDS")
+fodata = bind_rows(fodata)
+fodata = rbind(fodata, fostock)
+fodata$SYMBOL = as.factor(fodata$SYMBOL)
+fodata = split(fodata, fodata$SYMBOL)
+fodata = lapply(fodata, function(x) x[order(as.Date(x$TIMESTAMP, format="%d-%b-%Y")),])
+
+saveRDS(fodata, 'fodata.RDS')
+
+
+#write.csv(fostock, 'bhav190825.csv')
 
 #survey_data %>%
 #  write_rds("survey_data.rds")
-
-
-
-
-
 
 
