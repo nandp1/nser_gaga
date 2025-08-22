@@ -17,7 +17,7 @@ fo = read.csv('fo.csv')
 err = read.csv('err.csv')
 fodata = readRDS("fodata.rds")
 
-fostock = tryCatch(bhav('16082025'), error=function(e) err)
+fostock = tryCatch(bhavtoday(), error=function(e) err)
 fostock = inner_join(fostock, fo)
 fostock = subset(fostock, SERIES == "EQ")
 
@@ -39,3 +39,4 @@ saveRDS(fodata, 'fodata.RDS')
 
 #survey_data %>%
 #  write_rds("survey_data.rds")
+
