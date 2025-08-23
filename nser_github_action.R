@@ -15,7 +15,7 @@ library(nser)
 
 fo = read.csv('fo.csv')
 err = read.csv('err.csv')
-fodata = readRDS("fodata.rds")
+fodata = readRDS("fodata.RDS")
 
 fostock = tryCatch(bhavtoday(), error=function(e) err)
 fostock = inner_join(fostock, fo)
@@ -35,3 +35,4 @@ fodata = bind_rows(fodata)
 
 # save as .csv file
 write.csv(fodata, 'fodata.csv')
+
