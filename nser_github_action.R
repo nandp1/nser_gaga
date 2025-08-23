@@ -14,7 +14,7 @@ library(tidyverse)
 library(nser)
 
 fo = read.csv('fo.csv')
-err = read.csv('err.csv')
+err = read_csv("err.csv", col_types = cols(SYMBOL = col_character()))
 fodata = readRDS("fodata.RDS")
 
 fostock = tryCatch(bhavtoday(), error=function(e) err)
@@ -35,4 +35,5 @@ fodata = bind_rows(fodata)
 
 # save as .csv file
 write.csv(fodata, 'fodata.csv')
+
 
