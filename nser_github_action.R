@@ -4,8 +4,8 @@ if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-
 if (!require(gitcreds)) install.packages("gitcreds", repos = "https://cloud.r-project.org")
 
 library(gitcreds)
-#gitcreds::gitcreds_set('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')
-Sys.setenv(GITHUB_PAT = "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")
+#gitcreds::gitcreds_set('${{ secrets.ABCD }}')
+Sys.setenv(GITHUB_PAT = '${{ secrets.ABCD }}')
 
 if (!require(nser)) remotes::install_github('nandp1/nser')
 
@@ -35,5 +35,6 @@ fodata = bind_rows(fodata)
 
 # save as .csv file
 write.csv(fodata, 'fodata.csv')
+
 
 
