@@ -5,7 +5,7 @@ if (!require(gitcreds)) install.packages("gitcreds", repos = "https://cloud.r-pr
 
 library(gitcreds)
 #gitcreds::gitcreds_set('${{ secrets.ABCD }}')
-Sys.setenv(GITHUB_PAT = '${{ secrets.ABCD }}')
+#Sys.setenv(GITHUB_PAT = '${{ secrets.ABCD }}')
 
 if (!require(nser)) remotes::install_github('nandp1/nser')
 
@@ -35,6 +35,7 @@ fodata = bind_rows(fodata)
 
 # save as .csv file
 write.csv(fodata, 'fodata.csv')
+
 
 
 
