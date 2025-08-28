@@ -23,6 +23,7 @@ year = format(Sys.time(), "%Y")
 date = format(Sys.time(), "%d")
 # date in numeric
 dd = paste0( date, mt1, year)
+dd2 = dd
 aa = paste0(dd, '.csv')
 
 bhavcopy = bhav(dd)
@@ -35,22 +36,19 @@ if(dd == dd1){
   #fo = read.csv('fo.csv')
   err = read_csv("err.csv", col_types = cols(SYMBOL = col_character()))
 
-  bhavcopy = tryCatch(bhav(dd), error=function(e) err)
+  bhavcopy1 = tryCatch(bhav(dd2), error=function(e) err)
+ 
+  if (!dir.exists("2025")) dir.create("2025")
+  
+  # save as .csv file
+  write.csv(bhavcopy1, aa)
   
   print('Bhavcopy downloaded Sucessfully')
 } else{
   print('No Bhavcopy available for today')
 }
 
-  if (!dir.exists("2025")) dir.create("2025")
-  
-  # save as .csv file
-write.csv(bhavcopy, aa)
-                      
-if (!dir.exists("2025")) dir.create("2025")
-file.create("2025/test.txt")
+
 #git add .
 #git add *.csv
 #git commit -m "MY MESSAGE HERE"
-
-
