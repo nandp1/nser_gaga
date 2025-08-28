@@ -36,18 +36,18 @@ if(dd == dd1){
   err = read_csv("err.csv", col_types = cols(SYMBOL = col_character()))
 
   bhavcopy = tryCatch(bhav(dd), error=function(e) err)
- 
-  if (!dir.exists("2025")) dir.create("2025")
-  
-  # save as .csv file
-  write.csv(bhavcopy, aa)
   
   print('Bhavcopy downloaded Sucessfully')
 } else{
   print('No Bhavcopy available for today')
 }
 
-
+  if (!dir.exists("2025")) dir.create("2025")
+  
+  # save as .csv file
+  write.csv(bhavcopy, aa)
+                      
 #git add .
 #git add *.csv
 #git commit -m "MY MESSAGE HERE"
+
