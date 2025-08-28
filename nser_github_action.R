@@ -37,17 +37,24 @@ if(dd == dd1){
   err = read_csv("err.csv", col_types = cols(SYMBOL = col_character()))
 
   bhavcopy1 = tryCatch(bhav(dd2), error=function(e) err)
- 
-  if (!dir.exists("2025")) dir.create("2025")
-  
-  # save as .csv file
-  write.csv(bhavcopy1, aa)
   
   print('Bhavcopy downloaded Sucessfully')
 } else{
   print('No Bhavcopy available for today')
 }
 
+if (!dir.exists("2025")) dir.create("2025")
+
+# save as .csv file
+write.csv(bhavcopy1, aa)
+
+# List all files you want to move (e.g., all csv files)
+files_to_move <- list.files(pattern = "\\.csv$")
+
+
+for (f in files_to_move) {
+  file.rename(f, file.path("2025", f))
+}
 
 #git add .
 #git add *.csv
