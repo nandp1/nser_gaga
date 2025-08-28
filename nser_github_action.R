@@ -1,41 +1,53 @@
 
-if (!require(devtools)) install.packages("devtools", repos = "https://cloud.r-project.org")
+#if (!require(devtools)) install.packages("devtools", repos = "https://cloud.r-project.org")
 if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-project.org")
-if (!require(gitcreds)) install.packages("gitcreds", repos = "https://cloud.r-project.org")
+#if (!require(gitcreds)) install.packages("gitcreds", repos = "https://cloud.r-project.org")
+if (!require(nser)) install.packages("nser", repos = "https://cloud.r-project.org")
 
-library(gitcreds)
+#library(gitcreds)
 #gitcreds::gitcreds_set('${{ secrets.ABCD }}')
 #Sys.setenv(GITHUB_PAT = '${{ secrets.ABCD }}')
 
-if (!require(nser)) remotes::install_github('nandp1/nser')
+#if (!require(nser)) remotes::install_github('nandp1/nser')
 
-library(devtools)
+#library(devtools)
 library(tidyverse)
 library(nser)
 
-fo = read.csv('fo.csv')
-err = read_csv("err.csv", col_types = cols(SYMBOL = col_character()))
-fodata = readRDS("fodata.RDS")
+month = format(Sys.time(), "%m")
+mt1 = month
+month = as.integer(month)
+month = month.abb[month]
+month = toupper(month)
+year = format(Sys.time(), "%Y")
+date = format(Sys.time(), "%d")
+# date in numeric
+dd = paste0( date, mt1, year)
+aa = paste0(dd, '.csv')
 
-fostock = tryCatch(bhavtoday(), error=function(e) err)
-fostock = inner_join(fostock, fo)
-fostock = subset(fostock, SERIES == "EQ")
+bhavcopy = bhav(dd)
+dd1 = bhavcopy$TIMESTAMP[1]
+dd = dmy(dd)
+dd1 = dmy(dd1)
 
-fodata = bind_rows(fodata)
-fodata = rbind(fodata, fostock)
-fodata$SYMBOL = as.factor(fodata$SYMBOL)
-fodata = split(fodata, fodata$SYMBOL)
-fodata = lapply(fodata, function(x) x[order(as.Date(x$TIMESTAMP, format="%d-%b-%Y")),])
-# remove duplicated rows 
-fodata = lapply(fodata, function(x) x[!duplicated(x), ] )
+if(dd == dd1){
+  #
+  #fo = read.csv('fo.csv')
+  err = read_csv("err.csv", col_types = cols(SYMBOL = col_character()))
 
-saveRDS(fodata, 'fodata.RDS')
+  bhavcopy = tryCatch(bhav(dd), error=function(e) err)
+ 
+  if (!dir.exists("2025")) dir.create("2025")
+  
+  # save as .csv file
+  write.csv(bhavcopy, aa)
+  
+  print('Bhavcopy downloaded Sucessfully')
+} else{
+  print('No Bhavcopy available for today')
+}
 
-fodata = bind_rows(fodata)
 
-# save as .csv file
-write.csv(fodata, 'fodata.csv')
-
-
-
-
+#git add .
+#git add *.csv
+#git commit -m "MY MESSAGE HERE"
