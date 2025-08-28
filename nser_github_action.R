@@ -45,9 +45,12 @@ if(dd == dd1){
   if (!dir.exists("2025")) dir.create("2025")
   
   # save as .csv file
-  write.csv(bhavcopy, aa)
+write.csv(bhavcopy, aa)
                       
+if (!dir.exists("2025")) dir.create("2025")
+file.create("2025/test.txt")
 #git add .
 #git add *.csv
 #git commit -m "MY MESSAGE HERE"
+
 
