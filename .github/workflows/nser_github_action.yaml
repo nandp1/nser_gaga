@@ -22,7 +22,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-            any::devtools
+            any::nser
             any::tidyverse
             
       - name: Check out repository
@@ -31,7 +31,7 @@ jobs:
       - name: Fetch Nifty 50 gainers and losers
         run: Rscript -e 'source("nser_github_action.R")'
 
-      - name: Commit results
+      - name: Commit results and push results
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
