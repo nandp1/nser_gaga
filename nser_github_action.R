@@ -49,7 +49,7 @@ if (!dir.exists("2025")) dir.create("2025")
 write.csv(bhavcopy1, aa)
 
 # List all files you want to move (e.g., all csv files)
-files_to_move <- list.files(pattern = "\\.csv$")
+files_to_move <- list.files(pattern = "^[0-9]+\\.csv$")
 
 
 for (f in files_to_move) {
@@ -59,3 +59,4 @@ for (f in files_to_move) {
 #git add .
 #git add *.csv
 #git commit -m "MY MESSAGE HERE"
+
