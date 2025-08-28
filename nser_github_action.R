@@ -1,16 +1,7 @@
 
-#if (!require(devtools)) install.packages("devtools", repos = "https://cloud.r-project.org")
 if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-project.org")
-#if (!require(gitcreds)) install.packages("gitcreds", repos = "https://cloud.r-project.org")
 if (!require(nser)) install.packages("nser", repos = "https://cloud.r-project.org")
 
-#library(gitcreds)
-#gitcreds::gitcreds_set('${{ secrets.ABCD }}')
-#Sys.setenv(GITHUB_PAT = '${{ secrets.ABCD }}')
-
-#if (!require(nser)) remotes::install_github('nandp1/nser')
-
-#library(devtools)
 library(tidyverse)
 library(nser)
 
@@ -56,7 +47,4 @@ for (f in files_to_move) {
   file.rename(f, file.path("2025", f))
 }
 
-#git add .
-#git add *.csv
-#git commit -m "MY MESSAGE HERE"
 
