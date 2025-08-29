@@ -1,10 +1,7 @@
 ## `nser_gaga` 
 
-### ... uses **Github Actions** to download daily bhavcopy from **National Stock Exchange (NSE)** of F&O stocks. 
+### ... uses **Github Actions** to download daily bhavcopy from **National Stock Exchange (NSE)**
 
-* `fodata.csv` and `fodata.RDS` (**for R users**) has consolidated F&O daily bhavcopy data from Jan 2024 onwards. The files are automatically updated at around **1830 IST** daily. 
+* The bhavcopy is stored in folder `2025`. 
 
-* `fo.csv` contains the list of F&O stocks of NSE
-
-* `fodata00to23.RDS` contains the historical daily bhavcopy data of F&O stocks from 2000 to 2023.
-
+More features may be expected in future...
